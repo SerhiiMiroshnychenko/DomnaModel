@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пофакторний аналіз доменної плавки</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page">
+        <h1>Таблиця 1. Вплив технологічних факторів на питому витрату коксу та продуктивність доменної печі</h1>
+        <p class="subtitle">РД 34093721-2015 (з оновленнями п.7, п.19, п.20)</p>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="tech-select">Технологія:</label>
+                <select id="tech-select">
+                    <option value="pg">Природний газ (ПГ)</option>
+                    <option value="pt">Пиловугільне паливо (ПВП/ПУТ)</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="base-coke">Базова витрата коксу:</label>
+                <input type="number" id="base-coke" value="450" min="1" step="1">
+                <span class="unit">кг/т чавуну</span>
+            </div>
+            <button id="btn-reset" type="button">Скинути все</button>
+        </div>
+
+        <table id="factors-table">
+            <thead>
+                <tr>
+                    <th class="col-cb" rowspan="2"></th>
+                    <th class="col-num" rowspan="2">№<br>п/п</th>
+                    <th class="col-factor" rowspan="2">Фактори та одиниці виміру</th>
+                    <th class="col-input" rowspan="2">Зміна</th>
+                    <th class="col-values" colspan="2">+ збільшення, − зменшення</th>
+                </tr>
+                <tr>
+                    <th class="col-coke">витрата коксу<sup>1)</sup>, %</th>
+                    <th class="col-prod">продуктивність, %</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+
+        <div class="footnotes">
+            <p><sup>1)</sup> У чисельнику вказані нормативи для технології з використанням природного газу (ПГ), у знаменнику — з вдуванням ПВП/ПУТ.</p>
+            <p><sup>2)</sup> У разі короткочасних простоїв.</p>
+            <p><sup>3)</sup> За іншої середньої тривалості затримки випусків зазначені величини змінюються пропорційно.</p>
+        </div>
+    </div>
+
+    <div id="results">
+        <div class="results-inner">
+            <div class="res-title">Результати розрахунку</div>
+            <div class="res-row">
+                <span class="res-label">Зміна витрати коксу:</span>
+                <span id="r-coke-pct" class="res-val">0,00 %</span>
+                <span id="r-coke-kg" class="res-val-sec">(0,0 кг/т)</span>
+            </div>
+            <div class="res-row">
+                <span class="res-label">Очікувана витрата коксу:</span>
+                <span id="r-coke-new" class="res-val">450,0 кг/т</span>
+            </div>
+            <div class="res-row">
+                <span class="res-label">Зміна продуктивності:</span>
+                <span id="r-prod" class="res-val">0,00 %</span>
+            </div>
+            <div class="res-row">
+                <span class="res-label">Активних факторів:</span>
+                <span id="r-count" class="res-val-sec">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
