@@ -8,7 +8,6 @@ body {
     line-height: 1.45;
     color: #1a1a1a;
     background: #f8f8f6;
-    padding-bottom: 120px;
 }
 
 .page {
@@ -34,6 +33,15 @@ h1 {
     font-size: 13px;
     color: #555;
     margin-bottom: 20px;
+}
+
+.author {
+    text-align: right;
+    font-size: 13px;
+    color: #555;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    font-style: italic;
 }
 
 /* ===== Контролі зверху ===== */
