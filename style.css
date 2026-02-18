@@ -40,7 +40,9 @@ h1 {
     font-size: 13px;
     color: #555;
     margin-top: -15px;
-    margin-bottom: 20px;
+}
+
+.author-name {
     font-style: italic;
 }
 
@@ -116,7 +118,7 @@ h1 {
 /* Ширини колонок */
 .col-cb    { width: 32px; }
 .col-num   { width: 38px; }
-.col-factor{ /* auto */ }
+.col-factor{ width: auto; }
 .col-input { width: 88px; }
 .col-coke  { width: 130px; }
 .col-prod  { width: 110px; }
