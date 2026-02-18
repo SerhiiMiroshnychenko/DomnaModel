@@ -337,13 +337,50 @@ body.tech-pt .val-pg { opacity: 0.4; font-weight: normal; }
 .res-val.negative { color: #2a7d2a; }
 .res-val.neutral  { color: #1a1a1a; }
 
+/* ===== Обгортка таблиці (горизонтальна прокрутка) ===== */
+
+.table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -2px;
+}
+
+#factors-table {
+    min-width: 780px;
+}
+
 /* ===== Адаптивність ===== */
 
 @media (max-width: 900px) {
     .page { padding: 14px 8px 30px; margin: 8px; }
     #factors-table { font-size: 12px; }
-    .controls { font-size: 12px; gap: 12px; }
-    .results-inner { gap: 12px; padding: 6px 12px; font-size: 12px; }
+    .controls { font-size: 12px; gap: 10px; }
+    .results-inner { gap: 10px; padding: 6px 12px; font-size: 12px; }
     .col-coke { width: 110px; }
     .col-prod { width: 90px; }
+}
+
+@media (max-width: 600px) {
+    body { padding-bottom: 140px; }
+    .page { padding: 10px 6px 20px; margin: 4px; }
+    h1 { font-size: 14px; }
+    .subtitle, .author { font-size: 11px; }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px 10px;
+    }
+    .controls .control-group { justify-content: space-between; }
+    #btn-reset { margin-left: 0; }
+
+    .results-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 6px 10px 8px;
+    }
+    .res-row { flex-wrap: wrap; gap: 3px; }
+    .res-val { min-width: auto; }
 }
