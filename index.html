@@ -27,6 +27,11 @@
                 <input type="number" id="base-coke" value="450" min="1" step="1">
                 <span class="unit">кг/т чавуну</span>
             </div>
+            <div class="control-group">
+                <label for="base-prod">Базова продуктивність:</label>
+                <input type="number" id="base-prod" value="177660" min="1" step="1">
+                <span class="unit">т</span>
+            </div>
             <button id="btn-reset" type="button">Скинути все</button>
         </div>
 
@@ -72,6 +77,11 @@
             <div class="res-row">
                 <span class="res-label">Зміна продуктивності:</span>
                 <span id="r-prod" class="res-val">0,00 %</span>
+                <span id="r-prod-abs" class="res-val-sec">(0,0 т)</span>
+            </div>
+            <div class="res-row">
+                <span class="res-label">Очікувана продуктивність:</span>
+                <span id="r-prod-new" class="res-val">177 660,0 т</span>
             </div>
             <div class="res-row">
                 <span class="res-label">Активних факторів:</span>

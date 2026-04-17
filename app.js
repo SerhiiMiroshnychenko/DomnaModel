@@ -207,6 +207,12 @@ function fmtResult(n, decimals) {
     return s;
 }
 
+function fmtThousands(str) {
+    var parts = str.replace('.', ',').split(',');
+    var intPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return parts.length > 1 ? intPart + ',' + parts[1] : intPart;
+}
+
 
 // ====================================================================
 //  ПОБУДОВА ТАБЛИЦІ
@@ -320,6 +326,7 @@ function prodDisplay(r) {
 function recalculate() {
     var usePut = document.getElementById('tech-select').value === 'pt';
     var baseCoke = parseFloat(document.getElementById('base-coke').value) || 450;
+    var baseProd = parseFloat(document.getElementById('base-prod').value) || 177660;
 
     var totalCokePct = 0;
     var totalProdPct = 0;
@@ -377,7 +384,7 @@ function recalculate() {
         count++;
     }
 
-    updateResults(totalCokePct, totalProdPct, baseCoke, count);
+    updateResults(totalCokePct, totalProdPct, baseCoke, baseProd, count);
 }
 
 
@@ -389,20 +396,26 @@ function findData(id) {
 }
 
 
-function updateResults(cokePct, prodPct, baseCoke, count) {
+function updateResults(cokePct, prodPct, baseCoke, baseProd, count) {
     var cokeKg = cokePct / 100 * baseCoke;
     var newCoke = baseCoke + cokeKg;
+    var prodAbs = prodPct / 100 * baseProd;
+    var newProd = baseProd + prodAbs;
 
     var elCokePct = document.getElementById('r-coke-pct');
     var elCokeKg  = document.getElementById('r-coke-kg');
     var elCokeNew = document.getElementById('r-coke-new');
     var elProd    = document.getElementById('r-prod');
+    var elProdAbs = document.getElementById('r-prod-abs');
+    var elProdNew = document.getElementById('r-prod-new');
     var elCount   = document.getElementById('r-count');
 
     elCokePct.textContent = fmtResult(cokePct) + ' %';
     elCokeKg.textContent  = '(' + fmtResult(cokeKg, 1) + ' кг/т)';
     elCokeNew.textContent = newCoke.toFixed(1).replace('.', ',') + ' кг/т';
     elProd.textContent    = fmtResult(prodPct) + ' %';
+    elProdAbs.textContent = '(' + fmtResult(prodAbs, 1) + ' т)';
+    elProdNew.textContent = fmtThousands(newProd.toFixed(1)) + ' т';
     elCount.textContent   = count;
 
     // Кольорове кодування
@@ -452,6 +465,9 @@ function attachHandlers() {
 
     // Базова витрата коксу
     document.getElementById('base-coke').addEventListener('input', recalculate);
+
+    // Базова продуктивність
+    document.getElementById('base-prod').addEventListener('input', recalculate);
 
     // Скинути все
     document.getElementById('btn-reset').addEventListener('click', resetAll);
